@@ -1,0 +1,42 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  devtools:
+    add-properties: true
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/chat_app
+    username: postgres
+    password: 12345678
+#  flyway:
+#    locations: classpath:db/migration
+#    enabled: true
+#    baseline-version: 8
+#    baseline-on-migrate: false
+  flyway:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/chat_app
+    user: postgres
+    password: 12345678
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/chat-app
+      client:
+        registration:
+          keycloak:
+            client-id: spring-backend
+            client-secret: KFRqmFeTLFI77OraB0S3uL7GLHpuNVRn
+            authorization-grant-type: password
+            scope: openid,profile,email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/chat-app
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+#    org.springframework.data.r2dbc: DEBUG
+    io.r2dbc.postgresql: DEBUG

@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: phong_tro
+  profiles:
+    active: ${ENV:dev}
